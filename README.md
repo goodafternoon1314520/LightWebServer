@@ -13,6 +13,24 @@
 - 实践 epoll + 线程池 + HTTP 协议
 - 实现一个轻量化 WebServer
 
+当前已实现：
+
+- socket 网络编程
+- epoll IO复用
+- HTTP 响应
+- 多客户端连接
+- CMake工程化
+
+后续计划实现：
+
+- 非阻塞IO
+- ET模式
+- 线程池
+- Reactor模型
+- HTTP解析
+- MySQL连接池
+- 日志系统
+
 ---
 
 ## 技术栈
@@ -43,3 +61,43 @@ LightWebServer/
 ├── CMakeLists.txt
 └── .gitignore
 ```
+
+--- 
+
+## 环境
+
+- Ubuntu 22.04
+- g++
+- CMake
+
+---
+
+## 编译
+
+```bash
+mkdir build
+cd build
+
+cmake ..
+make
+```
+
+---
+
+## 运行
+
+```bash
+./server
+```
+
+浏览器访问：
+
+```test
+http://127.0.0.1:8080
+```
+
+---
+
+
+
+

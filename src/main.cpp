@@ -1,8 +1,9 @@
-#include <iostream>
+#include "server/HttpServer.h"
 
-int main()
-{
-    std::cout << "LightWebServer Start..." << std::endl;
+int main() {
+	HttpServer server(8080);
 
-    return 0;
+	server.start();
+
+	return 0;
 }
