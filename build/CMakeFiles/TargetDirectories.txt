@@ -1,0 +1,3 @@
+/home/john/projects/LightWebServer/build/CMakeFiles/server.dir
+/home/john/projects/LightWebServer/build/CMakeFiles/edit_cache.dir
+/home/john/projects/LightWebServer/build/CMakeFiles/rebuild_cache.dir
