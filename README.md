@@ -13,23 +13,35 @@
 - 实践 epoll + 线程池 + HTTP 协议
 - 实现一个轻量化 WebServer
 
-当前已实现：
+项目持续迭代中
+
+---
+
+## 当前已实现：
 
 - socket 网络编程
 - epoll IO复用
+- 非阻塞 socket
+- ET （边缘触发）模式
 - HTTP 响应
 - 多客户端连接
 - CMake工程化
+- Git/GitHub 版本管理
 
-后续计划实现：
+---
 
-- 非阻塞IO
-- ET模式
-- 线程池
-- Reactor模型
-- HTTP解析
-- MySQL连接池
+## 后续计划实现：
+
+- HttpConn 连接封装
+- 静态资源服务器
+- ThreadPool 线程池
+- Reactor 模型
+- HTTP 请求解析
+- 定时器
+- 登陆注册功能
+- MySQL 连接池
 - 日志系统
+- 压力测试
 
 ---
 
@@ -43,6 +55,7 @@
 - HTTP
 - CMake
 - Git
+- ET/LT
 
 --- 
 
