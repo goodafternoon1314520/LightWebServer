@@ -1,0 +1,22 @@
+#ifndef HTTP_CONN_H
+#define HTTPCONN_H
+
+class HttpConn {
+public:
+    HttpConn();
+
+    void init(int fd);
+
+    bool readData();
+
+    bool writeData();
+
+    void closeConn();
+
+    int getFd() const;
+
+private:
+    int m_fd;
+};
+
+#endif

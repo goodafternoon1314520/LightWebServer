@@ -9,4 +9,5 @@ include_directories(include)
 add_executable(server
     src/main.cpp
     src/server/HttpServer.cpp
+    src/http/HttpConn.cpp
 )

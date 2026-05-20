@@ -27,16 +27,16 @@
 - 多客户端连接
 - CMake工程化
 - Git/GitHub 版本管理
+- C++ 模块化（HttpConn管理客户端）
 
 ---
 
 ## 后续计划实现：
 
-- HttpConn 连接封装
 - 静态资源服务器
 - ThreadPool 线程池
 - Reactor 模型
-- HTTP 请求解析
+- 完整 HTTP 请求解析（GET/POST/HTTP头）
 - 定时器
 - 登陆注册功能
 - MySQL 连接池
@@ -63,16 +63,20 @@
 
 ```text
 LightWebServer/
-│
-├── src/            # 源码
-├── include/        # 头文件
-├── webroot/        # 静态资源
-├── logs/           # 日志
-├── build/          # 编译目录
-│
-├── README.md
+├── include/
+│   ├── http/
+│   │   └── HttpConn.h
+│   └── server/
+│       └── HttpServer.h
+├── src/
+│   ├── http/
+│   │   └── HttpConn.cpp
+│   ├── server/
+│   │   └── HttpServer.cpp
+│   └── main.cpp
+├── build/
 ├── CMakeLists.txt
-└── .gitignore
+└── README.md
 ```
 
 --- 
