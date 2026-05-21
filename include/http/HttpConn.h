@@ -19,6 +19,8 @@ public:
 
     int getFd() const;
 
+    std::string readFile(const std::string& path);
+
 private:
     int m_fd;
 

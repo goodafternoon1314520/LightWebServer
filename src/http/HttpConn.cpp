@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstring>
 #include <cerrno>
+#include <fstream>
+#include <sstream>
 
 HttpConn::HttpConn() : m_fd(-1) {}
 
@@ -54,6 +56,7 @@ bool HttpConn::readData() {
 }
 
 bool HttpConn::writeData() {
+    /*
     std::string body;
 
     if (m_request.path() == "/")
@@ -73,6 +76,41 @@ bool HttpConn::writeData() {
     int ret = write(m_fd, response.c_str(), response.size());
 
     return ret > 0;
+    */
+    std::string filePath;
+
+    if (m_request.path() == "/") {
+        filePath = "../webroot/index.html";
+    }
+    else {
+        filePath = "../webroot" + m_request.path();
+    }
+
+    std::string body = readFile(filePath);
+
+    std::string response;
+
+    // 文件不存在
+    if (body.empty()) {
+        body = "<h1>404 Not Found</h1>";
+
+        response =
+            "HTTP/1.1 404 Not Found\r\n"
+            "Content-Type: text/html\r\n"
+            "\r\n" +
+            body;
+    }
+    else {
+        response =
+            "HTTP/1.1 200 OK\r\n"
+            "Content-Type:text/html\r\n"
+            "\r\n" +
+            body;
+    }
+
+    int ret = write(m_fd, response.c_str(), response.size());
+
+    return ret > 0;
 }
 
 void HttpConn::closeConn() {
@@ -84,4 +122,17 @@ void HttpConn::closeConn() {
 
 int HttpConn::getFd() const {
     return m_fd;
+}
+
+std::string HttpConn::readFile(const std::string& path) {
+    std::ifstream file(path);
+
+    if (!file.is_open())
+        return "";
+
+    std::stringstream buffer;
+
+    buffer << file.rdbuf();
+
+    return buffer.str();
 }
