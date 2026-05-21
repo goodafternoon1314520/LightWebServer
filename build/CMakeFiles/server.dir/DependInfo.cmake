@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/john/projects/LightWebServer/src/http/HttpConn.cpp" "CMakeFiles/server.dir/src/http/HttpConn.cpp.o" "gcc" "CMakeFiles/server.dir/src/http/HttpConn.cpp.o.d"
+  "/home/john/projects/LightWebServer/src/http/parser/HttpRequest.cpp" "CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.o" "gcc" "CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.o.d"
   "/home/john/projects/LightWebServer/src/main.cpp" "CMakeFiles/server.dir/src/main.cpp.o" "gcc" "CMakeFiles/server.dir/src/main.cpp.o.d"
   "/home/john/projects/LightWebServer/src/server/HttpServer.cpp" "CMakeFiles/server.dir/src/server/HttpServer.cpp.o" "gcc" "CMakeFiles/server.dir/src/server/HttpServer.cpp.o.d"
   )

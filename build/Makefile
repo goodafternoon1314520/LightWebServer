@@ -153,6 +153,30 @@ src/http/HttpConn.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/HttpConn.cpp.s
 .PHONY : src/http/HttpConn.cpp.s
 
+src/http/parser/HttpRequest.o: src/http/parser/HttpRequest.cpp.o
+.PHONY : src/http/parser/HttpRequest.o
+
+# target to build an object file
+src/http/parser/HttpRequest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.o
+.PHONY : src/http/parser/HttpRequest.cpp.o
+
+src/http/parser/HttpRequest.i: src/http/parser/HttpRequest.cpp.i
+.PHONY : src/http/parser/HttpRequest.i
+
+# target to preprocess a source file
+src/http/parser/HttpRequest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.i
+.PHONY : src/http/parser/HttpRequest.cpp.i
+
+src/http/parser/HttpRequest.s: src/http/parser/HttpRequest.cpp.s
+.PHONY : src/http/parser/HttpRequest.s
+
+# target to generate assembly for a file
+src/http/parser/HttpRequest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.s
+.PHONY : src/http/parser/HttpRequest.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -213,6 +237,9 @@ help:
 	@echo "... src/http/HttpConn.o"
 	@echo "... src/http/HttpConn.i"
 	@echo "... src/http/HttpConn.s"
+	@echo "... src/http/parser/HttpRequest.o"
+	@echo "... src/http/parser/HttpRequest.i"
+	@echo "... src/http/parser/HttpRequest.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

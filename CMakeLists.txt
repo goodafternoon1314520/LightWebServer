@@ -10,4 +10,5 @@ add_executable(server
     src/main.cpp
     src/server/HttpServer.cpp
     src/http/HttpConn.cpp
+    src/http/parser/HttpRequest.cpp
 )

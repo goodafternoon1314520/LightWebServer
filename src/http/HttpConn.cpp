@@ -28,21 +28,49 @@ bool HttpConn::readData() {
             return false;
         }
         else {
-            std::cout.write(buffer, ret);
+            m_readBuffer.append(buffer, ret);
         }
     }
+    std::cout << "===== Raw Request =====\n";
+
+    std::cout << m_readBuffer << std::endl;
+
+    std::cout << "========================\n";
+
+    // HTTP解析
+    if (!m_request.parse(m_readBuffer)) {
+        std::cout << "parse request failed\n";
+
+        return false;
+    }
+
+    std::cout << "Method: " << m_request.method() << std::endl;
+
+    std::cout << "Path: " << m_request.path() << std::endl;
+
+    std::cout << "Version: " << m_request.version() << std::endl;
+
     return true;
 }
 
 bool HttpConn::writeData() {
-    const char* response =
+    std::string body;
+
+    if (m_request.path() == "/")
+        body = "<h1>Welcome LightWebServer</h1>";
+    else if (m_request.path() == "/hello")
+        body = "<h1>Hello Page</h1>";
+    else
+        body = "<h1>404 Not Found</h1>";
+
+    std::string response =
         "HTTP/1.1 200 OK\r\n\r\n"
         "Content-Type: text/html\r\n"
         "Connection: close\r\n"
-        "\r\n"
-        "<h1>Hello HttpConn</h1>\r\n";
+        "\r\n" +
+        body;
 
-    int ret = write(m_fd, response, strlen(response));
+    int ret = write(m_fd, response.c_str(), response.size());
 
     return ret > 0;
 }
