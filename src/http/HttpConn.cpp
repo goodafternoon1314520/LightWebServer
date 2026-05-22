@@ -103,16 +103,25 @@ bool HttpConn::writeData() {
             body;
     }
     else {
+        std::string connectionType;
+
+        if (isKeepAlive())
+            connectionType = "Connection: Keep-Alive\r\n";
+        else
+            connectionType = "Connection: close\r\n";
+
         std::string mimeType = MimeType::getType(filePath);
 
         response =
-            "HTTP/1.1 200 OK\r\n"
+            "HTTP/1.1 200 OK\r\n" + connectionType +
             "Content-Type:" + mimeType + "\r\n"
             "\r\n" +
             body;
     }
 
     int ret = write(m_fd, response.c_str(), response.size());
+
+    m_readBuffer.clear();
 
     return ret > 0;
 }
@@ -139,4 +148,10 @@ std::string HttpConn::readFile(const std::string& path) {
     buffer << file.rdbuf();
 
     return buffer.str();
+}
+
+bool HttpConn::isKeepAlive() const {
+    std::string connection = m_request.header("Connection");
+
+    return connection == "keep-alive";
 }

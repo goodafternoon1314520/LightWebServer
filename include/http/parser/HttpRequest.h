@@ -2,6 +2,7 @@
 #define HTTPREQUEST_H
 
 #include <string>
+#include <unordered_map>
 
 class HttpRequest {
 public:
@@ -13,12 +14,16 @@ public:
 
     std::string version() const;
 
+    std::string header(const std::string& key) const;
+
 private:
     std::string m_method;
 
     std::string m_path;
 
     std::string m_version;
+
+    std::unordered_map<std::string, std::string> m_headers;
 };
 
 #endif

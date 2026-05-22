@@ -21,6 +21,8 @@ public:
 
     std::string readFile(const std::string& path);
 
+    bool isKeepAlive() const;
+
 private:
     int m_fd;
 
