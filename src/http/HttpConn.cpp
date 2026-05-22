@@ -1,4 +1,5 @@
 #include "http/HttpConn.h"
+#include "http/utils/MimeType.h"
 
 #include <unistd.h>
 #include <iostream>
@@ -77,6 +78,7 @@ bool HttpConn::writeData() {
 
     return ret > 0;
     */
+
     std::string filePath;
 
     if (m_request.path() == "/") {
@@ -101,9 +103,11 @@ bool HttpConn::writeData() {
             body;
     }
     else {
+        std::string mimeType = MimeType::getType(filePath);
+
         response =
             "HTTP/1.1 200 OK\r\n"
-            "Content-Type:text/html\r\n"
+            "Content-Type:" + mimeType + "\r\n"
             "\r\n" +
             body;
     }

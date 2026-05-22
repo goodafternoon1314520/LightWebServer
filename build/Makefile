@@ -177,6 +177,30 @@ src/http/parser/HttpRequest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.s
 .PHONY : src/http/parser/HttpRequest.cpp.s
 
+src/http/utils/MimeType.o: src/http/utils/MimeType.cpp.o
+.PHONY : src/http/utils/MimeType.o
+
+# target to build an object file
+src/http/utils/MimeType.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/utils/MimeType.cpp.o
+.PHONY : src/http/utils/MimeType.cpp.o
+
+src/http/utils/MimeType.i: src/http/utils/MimeType.cpp.i
+.PHONY : src/http/utils/MimeType.i
+
+# target to preprocess a source file
+src/http/utils/MimeType.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/utils/MimeType.cpp.i
+.PHONY : src/http/utils/MimeType.cpp.i
+
+src/http/utils/MimeType.s: src/http/utils/MimeType.cpp.s
+.PHONY : src/http/utils/MimeType.s
+
+# target to generate assembly for a file
+src/http/utils/MimeType.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http/utils/MimeType.cpp.s
+.PHONY : src/http/utils/MimeType.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -240,6 +264,9 @@ help:
 	@echo "... src/http/parser/HttpRequest.o"
 	@echo "... src/http/parser/HttpRequest.i"
 	@echo "... src/http/parser/HttpRequest.s"
+	@echo "... src/http/utils/MimeType.o"
+	@echo "... src/http/utils/MimeType.i"
+	@echo "... src/http/utils/MimeType.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

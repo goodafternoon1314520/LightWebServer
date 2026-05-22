@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/src/http/HttpConn.cpp.o.d"
   "CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.o"
   "CMakeFiles/server.dir/src/http/parser/HttpRequest.cpp.o.d"
+  "CMakeFiles/server.dir/src/http/utils/MimeType.cpp.o"
+  "CMakeFiles/server.dir/src/http/utils/MimeType.cpp.o.d"
   "CMakeFiles/server.dir/src/main.cpp.o"
   "CMakeFiles/server.dir/src/main.cpp.o.d"
   "CMakeFiles/server.dir/src/server/HttpServer.cpp.o"

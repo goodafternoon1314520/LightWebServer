@@ -11,4 +11,5 @@ add_executable(server
     src/server/HttpServer.cpp
     src/http/HttpConn.cpp
     src/http/parser/HttpRequest.cpp
+    src/http/utils/MimeType.cpp
 )
