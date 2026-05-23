@@ -30,6 +30,9 @@ bool HttpRequest::parse(const std::string& request) {
     std::stringstream ss(request);
     std::string line;
 
+    m_state = REQUEST_LINE;
+
+    /*
     // 请求行
     std::getline(ss, line);
 
@@ -70,6 +73,58 @@ bool HttpRequest::parse(const std::string& request) {
         m_headers[key] = value;
     }
     return true;
+    */
+
+    while (std::getline(ss, line)) {
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+
+        switch (m_state) {
+            case REQUEST_LINE:{
+                std::stringstream lineStream(line);
+
+                lineStream >> m_method
+                           >> m_path
+                           >> m_version;
+
+                if (m_method.empty() || m_path.empty() || m_version.empty())
+                    return false;
+
+                m_state = HEADERS;
+                break;
+            }
+            case HEADERS: {
+                // header结束
+                if (line.empty()) {
+                    m_state = FINISH;
+                    break;
+                }
+
+                size_t pos = line.find(":");
+
+                if (pos == std::string::npos)
+                    continue;
+
+                std::string key = line.substr(0, pos);
+                std::string value = line.substr(pos + 1);
+
+                while (!value.empty() && value[0] == ' ')
+                    value.erase(0,1);
+
+                m_headers[key] = value;
+                break;
+            }
+            case BODY: {
+                break;
+            }
+            case FINISH: {
+                break;
+            }
+            default:
+                break;
+        }
+    }
+    return m_state = FINISH;
 }
 
 std::string HttpRequest::method() const {

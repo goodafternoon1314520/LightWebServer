@@ -16,6 +16,7 @@ void HttpConn::updateActiveTime() {
 
 void HttpConn::init(int fd) {
     m_fd = fd;
+    m_bytesToSend = 0;
 
     updateActiveTime();
 }
@@ -48,9 +49,10 @@ bool HttpConn::readData() {
 
     // HTTP解析
     if (!m_request.parse(m_readBuffer)) {
-        std::cout << "parse request failed\n";
+        // std::cout << "parse request failed\n";
 
-        return false;
+        // 数据还不完整
+        return true;
     }
 
     std::cout << "Method: " << m_request.method() << std::endl;
@@ -135,11 +137,16 @@ bool HttpConn::writeData() {
             body;
     }
 
-    int ret = write(m_fd, response.c_str(), response.size());
+    // int ret = write(m_fd, response.c_str(), response.size());
 
-    m_readBuffer.clear();
+    // m_readBuffer.clear();
 
-    return ret > 0;
+    // return ret > 0;
+
+    m_writeBuffer = response;
+    m_bytesToSend = m_writeBuffer.size();
+
+    return true;
 }
 
 void HttpConn::closeConn() {
@@ -178,4 +185,24 @@ bool HttpConn::isTimeout(int timeoutSec) {
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - m_lastActive);
 
     return duration.count() >= timeoutSec;
+}
+
+bool HttpConn::sendData() {
+    while (m_bytesToSend > 0) {
+        int ret = write(m_fd, m_writeBuffer.c_str(), m_bytesToSend);
+
+        if (ret < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK)
+                return true;
+            return false;
+        }
+
+        m_writeBuffer.erase(0, ret);
+        m_bytesToSend -= ret;
+    }
+    return true;
+}
+
+size_t HttpConn::bytesToSend() const {
+    return m_bytesToSend;
 }

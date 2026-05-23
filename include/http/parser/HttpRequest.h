@@ -4,6 +4,13 @@
 #include <string>
 #include <unordered_map>
 
+enum ParseState {
+  REQUEST_LINE,
+  HEADERS,
+  BODY,
+  FINISH  
+};
+
 class HttpRequest {
 public:
     bool parse(const std::string& request);
@@ -17,6 +24,8 @@ public:
     std::string header(const std::string& key) const;
 
 private:
+    ParseState m_state;
+
     std::string m_method;
 
     std::string m_path;
