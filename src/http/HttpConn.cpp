@@ -10,8 +10,14 @@
 
 HttpConn::HttpConn() : m_fd(-1) {}
 
+void HttpConn::updateActiveTime() {
+    m_lastActive = std::chrono::steady_clock::now();
+}
+
 void HttpConn::init(int fd) {
     m_fd = fd;
+
+    updateActiveTime();
 }
 
 bool HttpConn::readData() {
@@ -52,6 +58,8 @@ bool HttpConn::readData() {
     std::cout << "Path: " << m_request.path() << std::endl;
 
     std::cout << "Version: " << m_request.version() << std::endl;
+
+    updateActiveTime();
 
     return true;
 }
@@ -162,4 +170,12 @@ bool HttpConn::isKeepAlive() const {
     std::string connection = m_request.header("Connection");
 
     return connection == "keep-alive";
+}
+
+bool HttpConn::isTimeout(int timeoutSec) {
+    auto now = std::chrono::steady_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - m_lastActive);
+
+    return duration.count() >= timeoutSec;
 }
