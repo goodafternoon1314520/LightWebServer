@@ -68,9 +68,12 @@ bool HttpConn::writeData() {
         body = "<h1>404 Not Found</h1>";
 
     std::string response =
-        "HTTP/1.1 200 OK\r\n\r\n"
-        "Content-Type: text/html\r\n"
-        "Connection: close\r\n"
+        "HTTP/1.1 200 OK\r\n" +
+        connectionType +
+        "Content-Type: " + mimeType + "\r\n" +
+        "Content-Length: " +
+        std::to_string(body.size()) +
+        "\r\n" +
         "\r\n" +
         body;
 
@@ -99,6 +102,9 @@ bool HttpConn::writeData() {
         response =
             "HTTP/1.1 404 Not Found\r\n"
             "Content-Type: text/html\r\n"
+            "Content-Length: " +
+            std::to_string(body.size()) +
+            "\r\n"
             "\r\n" +
             body;
     }
@@ -114,7 +120,9 @@ bool HttpConn::writeData() {
 
         response =
             "HTTP/1.1 200 OK\r\n" + connectionType +
-            "Content-Type:" + mimeType + "\r\n"
+            "Content-Type:" + mimeType + "\r\n" +
+            "Content-Length: " + std::to_string(body.size()) +
+            "\r\n" +
             "\r\n" +
             body;
     }

@@ -249,6 +249,30 @@ src/server/HttpServer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/HttpServer.cpp.s
 .PHONY : src/server/HttpServer.cpp.s
 
+src/thread/ThreadPool.o: src/thread/ThreadPool.cpp.o
+.PHONY : src/thread/ThreadPool.o
+
+# target to build an object file
+src/thread/ThreadPool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/thread/ThreadPool.cpp.o
+.PHONY : src/thread/ThreadPool.cpp.o
+
+src/thread/ThreadPool.i: src/thread/ThreadPool.cpp.i
+.PHONY : src/thread/ThreadPool.i
+
+# target to preprocess a source file
+src/thread/ThreadPool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/thread/ThreadPool.cpp.i
+.PHONY : src/thread/ThreadPool.cpp.i
+
+src/thread/ThreadPool.s: src/thread/ThreadPool.cpp.s
+.PHONY : src/thread/ThreadPool.s
+
+# target to generate assembly for a file
+src/thread/ThreadPool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/thread/ThreadPool.cpp.s
+.PHONY : src/thread/ThreadPool.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -273,6 +297,9 @@ help:
 	@echo "... src/server/HttpServer.o"
 	@echo "... src/server/HttpServer.i"
 	@echo "... src/server/HttpServer.s"
+	@echo "... src/thread/ThreadPool.o"
+	@echo "... src/thread/ThreadPool.i"
+	@echo "... src/thread/ThreadPool.s"
 .PHONY : help
 
 

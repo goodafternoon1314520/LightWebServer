@@ -12,4 +12,7 @@ add_executable(server
     src/http/HttpConn.cpp
     src/http/parser/HttpRequest.cpp
     src/http/utils/MimeType.cpp
+    src/thread/ThreadPool.cpp
 )
+
+target_link_libraries(server pthread)
